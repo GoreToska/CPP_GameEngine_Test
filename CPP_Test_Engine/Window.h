@@ -12,6 +12,9 @@ public:
 	bool Broadcast();
 	bool IsRunning();
 
+	RECT GetClientWindowRect();
+	void SetHWND(HWND hwnd);
+
 	//On window create event
 	virtual void OnCreate() = 0;
 	//On window update event
@@ -19,7 +22,7 @@ public:
 	//On window destroy event
 	virtual void OnDestroy();
 
-private:
+protected:
 	HWND m_hwnd;
 	bool m_is_running;
 };

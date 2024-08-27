@@ -1,4 +1,6 @@
 #include "GraphicsEngine.h"
+#include "SwapChain.h"
+
 
 GraphicsEngine::GraphicsEngine()
 {
@@ -27,9 +29,9 @@ bool GraphicsEngine::Init()
 	HRESULT result = 0;
 	for (UINT driver_type_index = 0; driver_type_index < number_of_driver_types; driver_type_index)
 	{
-		result = D3D11CreateDevice(NULL, driver_types[driver_type_index], NULL, NULL, feature_levels, 
+		result = D3D11CreateDevice(NULL, driver_types[driver_type_index], NULL, NULL, feature_levels,
 			number_of_feature_levels, D3D11_SDK_VERSION, &m_d3d_device, &m_feature_level, &m_imm_context);
-	
+
 		if (SUCCEEDED(result))
 			break;
 
@@ -41,6 +43,11 @@ bool GraphicsEngine::Init()
 		return false;
 	}
 
+
+	m_d3d_device->QueryInterface(__uuidof(IDXGIDevice), (void**)&m_dxgi_device);
+	m_dxgi_device->GetParent(__uuidof(IDXGIAdapter), (void**)&m_dxgi_adapter);
+	m_dxgi_adapter->GetParent(__uuidof(IDXGIFactory), (void**)&m_dxgi_factory);
+
 	return true;
 }
 
@@ -48,6 +55,10 @@ bool GraphicsEngine::Release()
 {
 	m_imm_context->Release();
 	m_d3d_device->Release();
+	m_dxgi_device->Release();
+	m_dxgi_adapter->Release();
+	m_dxgi_factory->Release();
+
 	return true;
 }
 
@@ -55,4 +66,9 @@ GraphicsEngine* GraphicsEngine::Get()
 {
 	static GraphicsEngine engine;
 	return &engine;
+}
+
+SwapChain* GraphicsEngine::CreateSwapChain()
+{
+	return new SwapChain();
 }
