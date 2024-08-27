@@ -1,7 +1,7 @@
 #pragma once
-#include"Window.h"
-#include "GraphicsEngine.h"
+#include "Window.h"
 #include "SwapChain.h"
+
 
 class AppWindow : public Window
 {
