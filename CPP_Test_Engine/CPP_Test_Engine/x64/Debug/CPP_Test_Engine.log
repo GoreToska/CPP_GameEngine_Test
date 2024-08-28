@@ -1,7 +1,2 @@
-﻿  AppWindow.cpp
-  DeviceContext.cpp
-  GraphicsEngine.cpp
-  main.cpp
-  Window.cpp
-  Создание кода...
+﻿  Logger.cpp
   CPP_Test_Engine.vcxproj -> D:\CPP Projects\CPP_GameEngine_Test\CPP_Test_Engine\x64\Debug\CPP_Test_Engine.exe

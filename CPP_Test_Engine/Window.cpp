@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "Logger.h"
 
 
 Window::Window() : m_hwnd(NULL)
@@ -56,7 +57,10 @@ bool Window::Init()
 	wc.lpfnWndProc = &WndProc;
 
 	if (!::RegisterClassEx(&wc))
+	{
+		Logger::SendError("Can't register class", __FILE__, __LINE__);
 		return false;
+	}
 
 
 	// create window
@@ -64,7 +68,10 @@ bool Window::Init()
 		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768, NULL, NULL, NULL, this);
 
 	if (!m_hwnd)
+	{
+		Logger::SendError("Can't create window", __FILE__, __LINE__);
 		return false;
+	}
 
 	// show up the window
 	::ShowWindow(m_hwnd, SW_SHOW);
@@ -79,10 +86,16 @@ bool Window::Release()
 	// destroy the window
 	
 	if (!m_hwnd)
+	{
+		Logger::SendError("Can't find window", __FILE__, __LINE__);
 		return false;
+	}
 
 	if (!::DestroyWindow(m_hwnd))
+	{
+		Logger::SendError("Can't destroy window", __FILE__, __LINE__);
 		return false;
+	}
 
 	return true;
 }

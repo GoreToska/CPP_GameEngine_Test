@@ -1,6 +1,11 @@
 #include "GraphicsEngine.h"
 #include "SwapChain.h"
 #include "DeviceContext.h"
+#include "VertexBuffer.h"
+#include <iostream>
+#include "Logger.h"
+
+
 
 GraphicsEngine::GraphicsEngine()
 {
@@ -42,9 +47,9 @@ bool GraphicsEngine::Init()
 
 	if (FAILED(result))
 	{
+		Logger::SendError("Can't create device", __FILE__, __LINE__);
 		return false;
 	}
-
 
 	m_imm_device_context = new DeviceContext(m_imm_context);
 

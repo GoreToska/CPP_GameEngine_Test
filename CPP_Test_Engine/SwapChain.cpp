@@ -1,6 +1,6 @@
 #include "SwapChain.h"
 #include "GraphicsEngine.h"
-#include<iostream>
+#include "Logger.h"
 
 SwapChain::SwapChain()
 {
@@ -34,15 +34,19 @@ bool SwapChain::Init(HWND hwnd, UINT width, UINT height)
 
 	if (FAILED(result))
 	{
-		std::cout << "Error on SwapChain.cpp\n";
+		Logger::SendError("Can't create Swap Chain", __FILE__, __LINE__);
 		return false;
 	}
+
 
 	ID3D11Texture2D* buffer = NULL;
 	result = m_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&buffer);
 
+	Logger::SendError("Can't get buffer", __FILE__, __LINE__);
+
 	if (FAILED(result))
 	{
+		Logger::SendError("Can't get buffer", __FILE__, __LINE__);
 		return false;
 	}
 
@@ -59,7 +63,6 @@ bool SwapChain::Init(HWND hwnd, UINT width, UINT height)
 
 bool SwapChain::Release()
 {
-	//m_swap_chain->Release();
 	delete this;
 	return true;
 }
