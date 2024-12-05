@@ -51,6 +51,9 @@
     <ClCompile Include="Logger.cpp">
       <Filter>Logger</Filter>
     </ClCompile>
+    <ClCompile Include="Types.cpp">
+      <Filter>GameEngine\GraphicsEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">

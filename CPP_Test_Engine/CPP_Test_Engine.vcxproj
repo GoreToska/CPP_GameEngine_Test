@@ -25,6 +25,7 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SwapChain.cpp" />
+    <ClCompile Include="Types.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -129,6 +130,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(WindowsSDK_LibraryPath_x64)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

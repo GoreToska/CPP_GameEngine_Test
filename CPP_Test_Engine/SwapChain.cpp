@@ -42,8 +42,6 @@ bool SwapChain::Init(HWND hwnd, UINT width, UINT height)
 	ID3D11Texture2D* buffer = NULL;
 	result = m_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&buffer);
 
-	Logger::SendError("Can't get buffer", __FILE__, __LINE__);
-
 	if (FAILED(result))
 	{
 		Logger::SendError("Can't get buffer", __FILE__, __LINE__);
